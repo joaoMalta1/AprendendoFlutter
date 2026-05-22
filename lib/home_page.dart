@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ola_mundo/app_controller.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,27 +15,19 @@ class StateHomePage extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       
-      appBar: AppBar(title: Text('Flutter Demo'), backgroundColor: Colors.red),
+      appBar: AppBar(title: Text('Flutter Demo')),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
             count++;
           });
         },
+      
       child: Icon(Icons.add),),
       body: Center(
-        child: GestureDetector(
-          child: Text(
-            'Counter: $count', //concatenação de string, o valor da variável count é convertido para string e concatenado com a string 'Count: '
-            textDirection: TextDirection.ltr,
-            style: TextStyle(color: Colors.red, fontSize: 30.0),
-          ),
-          onTap: () {
-            setState(() {
-              count++;
-            });
-          },
-        ),
+        child: Switch(value: AppController.instance.darkMode, onChanged: (value)
+        {AppController.instance.ChangeMode();
+        })
       ),
     );
   }
